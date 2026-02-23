@@ -18,7 +18,7 @@
       - ^doc/.*$
       - ^.*\.rst$
       - ^releasenotes/.*$
-      - ^heatclient/tests/.*$
+      - ^heatclient/tests/unit/.*$
 
 - project:
     templates:
