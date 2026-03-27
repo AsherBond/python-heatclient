@@ -16,6 +16,7 @@
 import base64
 import logging
 import os
+from pathlib import Path
 import textwrap
 import uuid
 
@@ -426,8 +427,7 @@ def base_url_for_url(url):
 def normalise_file_path_to_url(path):
     if parse.urlparse(path).scheme:
         return path
-    path = os.path.abspath(path)
-    return parse.urljoin('file:', request.pathname2url(path))
+    return Path(path).resolve().as_uri()
 
 
 def get_response_body(resp):
