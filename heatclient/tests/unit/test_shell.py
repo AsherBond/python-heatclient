@@ -12,6 +12,7 @@
 # limitations under the License.
 
 import os
+from pathlib import Path
 import sys
 import tempfile
 from unittest import mock
@@ -1224,8 +1225,8 @@ class ShellTestUserPass(ShellBase):
 
         self.useFixture(fixtures.MockPatchObject(utils, 'read_url_content',
                                                  return_value='xxxxxx'))
-        url = 'file://' + request.pathname2url(
-            '%s/private_key.env' % TEST_VAR_DIR)
+
+        url = Path(TEST_VAR_DIR, 'private_key.env').as_uri()
 
         template_file = os.path.join(TEST_VAR_DIR, 'minimal.template')
         create_text = self.shell(
@@ -1255,8 +1256,7 @@ class ShellTestUserPass(ShellBase):
 
         self.useFixture(fixtures.MockPatchObject(utils, 'read_url_content',
                                                  return_value='xxxxxx'))
-        url = 'file://' + request.pathname2url(
-            '%s/private_key.env' % TEST_VAR_DIR)
+        url = Path(TEST_VAR_DIR, 'private_key.env').as_uri()
 
         template_file = os.path.join(TEST_VAR_DIR, 'minimal.template')
         create_text = self.shell(
